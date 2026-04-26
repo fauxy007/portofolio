@@ -2,7 +2,7 @@
 
 import React, { useRef, useEffect, useState, useCallback } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence, useScroll, useTransform, PanInfo } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform, PanInfo, Variants } from "framer-motion";
 
 interface TrailPoint {
   x: number;
@@ -515,7 +515,7 @@ export default function Hero() {
   );
 
   // Staggered animation variants for smoother mobile menu
-  const submenuVariants = {
+  const submenuVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -533,7 +533,7 @@ export default function Hero() {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, x: 20, scale: 0.9 },
     visible: { 
       opacity: 1, 
