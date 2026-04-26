@@ -58,16 +58,16 @@ const LinkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
 // ═══════════════════════════════════════════════════════════════
 const SOCIALS = [
   { Icon: InstagramIcon, href: "https://instagram.com/fadzarsw", label: "Instagram" },
-  { Icon: GithubIcon, href: "https://github.com/fadzarSW", label: "GitHub" },
-  { Icon: LinkedinIcon, href: "https://linkedin.com/in/fadzarsw", label: "LinkedIn" },
-  { Icon: TwitterIcon, href: "https://x.com/fadzarsw", label: "Twitter / X" },
+  { Icon: GithubIcon, href: "https://github.com/FadzarSuryaWijaya", label: "GitHub" },
+  { Icon: LinkedinIcon, href: "https://www.linkedin.com/in/fadzarsuryawijaya", label: "LinkedIn" },
+  // { Icon: TwitterIcon, href: "https://x.com/fadzarsw", label: "Twitter / X" },
 ];
 
 const NAV_LINKS = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Projects", href: "/project" },
-  { name: "Contact", href: "/contact" },
+  { name: "Home", href: "#home" },
+  { name: "About", href: "#about" },
+  { name: "Projects", href: "#projects" },
+  { name: "Contact", href: "#contact" },
 ];
 
 // ═══════════════════════════════════════════════════════════════
@@ -136,6 +136,13 @@ export default function Footer() {
                   <li key={item.name}>
                     <Link
                       href={item.href}
+                      onClick={(e) => {
+                        if (item.href.startsWith("#")) {
+                          e.preventDefault();
+                          const targetId = item.href.substring(1);
+                          document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth" });
+                        }
+                      }}
                       className="text-sm font-medium tracking-wide text-zinc-500 hover:text-zinc-50 transition-all duration-300 hover:translate-x-1 inline-block"
                     >
                       {item.name}

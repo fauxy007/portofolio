@@ -31,17 +31,17 @@ type NavLink = {
 };
 
 const NAV_LINKS: NavLink[] = [
-  { name: "HOME", href: "/" },
-  { name: "ABOUT", href: "/about" },
-  { name: "PROJECT", href: "/project" },
-  { name: "CONTACT", href: "/contact" },
+  { name: "HOME", href: "#home" },
+  { name: "ABOUT", href: "#about" },
+  { name: "PROJECT", href: "#projects" },
+  { name: "CONTACT", href: "#contact" },
 ];
 
 const SOCIAL_LINKS = [
-  { icon: TwitterIcon, href: "#", label: "Twitter" },
-  { icon: InstagramIcon, href: "#", label: "Instagram" },
-  { icon: DiscordIcon, href: "#", label: "Discord" },
-  { icon: YoutubeIcon, href: "#", label: "Youtube" },
+  { icon: TwitterIcon, href: "#contact", label: "Twitter" },
+  { icon: InstagramIcon, href: "#contact", label: "Instagram" },
+  { icon: DiscordIcon, href: "#contact", label: "Discord" },
+  { icon: YoutubeIcon, href: "#contact", label: "Youtube" },
 ];
 
 // Animation Variants
@@ -145,7 +145,13 @@ export default function Navbar() {
           <div className="flex items-center gap-2">
             <Target className="h-7 w-7 text-white" />
             <Link
-              href="/"
+              href="#home"
+              onClick={(e) => {
+                if (window.location.pathname === "/") {
+                  e.preventDefault();
+                  document.getElementById("home")?.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
               className="group/logo relative inline-flex overflow-hidden text-3xl text-white/90"
               style={{ fontFamily: "var(--font-anton)" }}
             >
@@ -228,7 +234,14 @@ export default function Navbar() {
                     <motion.div variants={linkVariants}>
                       <Link
                         href={link.href}
-                        onClick={() => setIsOpen(false)}
+                        onClick={(e) => {
+                          setIsOpen(false);
+                          if (link.href.startsWith("#")) {
+                            e.preventDefault();
+                            const targetId = link.href.substring(1);
+                            document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth" });
+                          }
+                        }}
                         className="group relative inline-flex overflow-hidden text-6xl tracking-tight text-white md:text-7xl lg:text-8xl"
                         style={{ fontFamily: "var(--font-anton)" }}
                       >

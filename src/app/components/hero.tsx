@@ -556,6 +556,7 @@ export default function Hero() {
 
   return (
     <div
+      id="home"
       ref={containerRef}
       className="relative w-full h-screen overflow-hidden bg-neutral-950 select-none"
       onMouseMove={handleMouseMove}

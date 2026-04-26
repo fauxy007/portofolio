@@ -28,7 +28,7 @@ interface Project {
 // ═══════════════════════════════════════════════════════════════
 const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
   const cardRef = useRef<HTMLDivElement>(null);
-  
+
   // Parallax effect for the image area
   const { scrollYProgress } = useScroll({
     target: cardRef,
@@ -50,39 +50,39 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 1, ease: SOFT_LANDING, delay: index * 0.1 }}
-      className="relative w-full mb-32 md:mb-48 group will-change-transform"
+      className="relative w-full mb-6 md:mb-16 group will-change-transform"
     >
-    <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
-        
+      <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
+
         {/* Left Side: Visual Representation */}
         <div className="w-full lg:w-3/5 relative aspect-video rounded-3xl overflow-hidden bg-zinc-50 border border-zinc-100 shadow-sm group-hover:shadow-xl transition-all duration-700">
           {/* Image from DB */}
           {project.imageUrl && (
-            <img 
-              src={project.imageUrl} 
+            <img
+              src={project.imageUrl}
               alt={project.title}
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
           )}
-          
+
           {/* Grid Pattern Overlay */}
-          <div 
-            className="absolute inset-0 opacity-[0.03]" 
-            style={{ 
-              backgroundImage: "radial-gradient(circle, #000 1px, transparent 1px)", 
-              backgroundSize: "32px 32px" 
-            }} 
+          <div
+            className="absolute inset-0 opacity-[0.03]"
+            style={{
+              backgroundImage: "radial-gradient(circle, #000 1px, transparent 1px)",
+              backgroundSize: "32px 32px"
+            }}
           />
 
           {/* Parallax Content Container (Optional decorative element) */}
-          <motion.div 
+          <motion.div
             style={{ y: yParallax }}
             className="absolute inset-0 flex items-center justify-center pointer-events-none border-t border-white/20 will-change-transform"
           >
             {/* Tech stack floating tags */}
             <div className="relative w-full h-full">
               {project.techStack.slice(0, 2).map((t, i) => (
-                <div 
+                <div
                   key={t}
                   className={`absolute ${i === 0 ? 'top-10 right-10' : 'bottom-10 left-10'} px-4 py-2 bg-white/80 backdrop-blur-md rounded-full text-[10px] font-bold uppercase tracking-widest shadow-lg border border-white/50`}
                 >
@@ -123,7 +123,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
           {/* Tech Stack Horizontal List */}
           <div className="flex flex-wrap gap-2 mt-4">
             {project.techStack.map((t) => (
-              <span 
+              <span
                 key={t}
                 className="px-3 py-1.5 rounded-lg bg-zinc-50 border border-zinc-100 text-[10px] font-bold text-zinc-500 uppercase tracking-widest"
               >
@@ -135,9 +135,9 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
           {/* Action Button */}
           <div className="mt-6 flex gap-4">
             {project.liveUrl && (
-              <a 
-                href={project.liveUrl} 
-                target="_blank" 
+              <a
+                href={project.liveUrl}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="group/btn relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-zinc-900 px-8 py-4 text-sm font-bold text-white transition-all hover:pr-12 active:scale-95"
               >
@@ -147,9 +147,9 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
               </a>
             )}
             {project.repoUrl && (
-              <a 
-                href={project.repoUrl} 
-                target="_blank" 
+              <a
+                href={project.repoUrl}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="group/btn relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-white border border-zinc-200 px-8 py-4 text-sm font-bold text-zinc-900 transition-all hover:bg-zinc-50 active:scale-95"
               >
@@ -168,8 +168,8 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
 // ═══════════════════════════════════════════════════════════════
 export default function Projects({ projects }: { projects: Project[] }) {
   return (
-    <section 
-      id="projects" 
+    <section
+      id="projects"
       className="relative w-full bg-white py-20 text-zinc-900 overflow-hidden"
     >
       {/* Decorative Background Elements */}
@@ -177,9 +177,9 @@ export default function Projects({ projects }: { projects: Project[] }) {
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-zinc-50 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/4 pointer-events-none transform-gpu" />
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
-        
+
         {/* Intro Section */}
-        <div className="mb-32 md:mb-48">
+        <div className="mb-6 md:mb-16">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -194,32 +194,32 @@ export default function Projects({ projects }: { projects: Project[] }) {
               Projects<span className="text-zinc-200">.</span>
             </h2>
           </motion.div>
-          
+
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mt-8 gap-8">
-             <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1, delay: 0.3, ease: SOFT_LANDING }}
-                className="max-w-xl"
-             >
-                <p className="text-xl md:text-2xl text-zinc-400 font-medium leading-relaxed">
-                  Building digital solutions with focus on performance, scalability, and seamless user interaction.
-                </p>
-             </motion.div>
-             
-             <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1, delay: 0.5, ease: SOFT_LANDING }}
-                className="flex items-center gap-4 text-zinc-300"
-             >
-                <div className="w-12 h-12 rounded-full border border-zinc-100 flex items-center justify-center animate-bounce">
-                   <ArrowUpRight className="rotate-90 w-5 h-5" />
-                </div>
-                <span className="text-[10px] font-bold uppercase tracking-widest">Scroll to explore</span>
-             </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.3, ease: SOFT_LANDING }}
+              className="max-w-xl"
+            >
+              <p className="text-xl md:text-2xl text-zinc-400 font-medium leading-relaxed">
+                Building digital solutions with focus on performance, scalability, and seamless user interaction.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.5, ease: SOFT_LANDING }}
+              className="flex items-center gap-4 text-zinc-300"
+            >
+              <div className="w-12 h-12 rounded-full border border-zinc-100 flex items-center justify-center animate-bounce">
+                <ArrowUpRight className="rotate-90 w-5 h-5" />
+              </div>
+              <span className="text-[10px] font-bold uppercase tracking-widest">Scroll to explore</span>
+            </motion.div>
           </div>
         </div>
 
@@ -237,7 +237,7 @@ export default function Projects({ projects }: { projects: Project[] }) {
         )}
 
         {/* Footer Link (Optional) */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
